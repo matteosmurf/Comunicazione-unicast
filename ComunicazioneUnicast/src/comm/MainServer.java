@@ -8,5 +8,10 @@ public class MainServer {
     public static void main(String[] args) {
        Server s = new Server(1906);
        s.attendi();
+       String messaggio = s.leggi();
+       System.out.println("Messaggio del client: " + messaggio);
+       s.scrivi("ciao client");
+       s.chiudi();
+       s.termina();
     }
 }
