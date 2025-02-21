@@ -23,6 +23,9 @@ public class Client {
     String colore;
     Socket socket;
 
+    private final String ANSI_RESET = "\u001B[0m";
+    private final String ANSI_VERDE = "\u001B[32m";
+
     public Client(String nome, String colore){
         this.nome = nome;
         this.colore = colore;
@@ -54,7 +57,8 @@ public class Client {
 
     public void scrivi(String messaggio) {
         try {
-            out.write(messaggio);
+            String messaggioColorato = coloraMessaggio(messaggio);
+            out.write(messaggioColorato);
             out.newLine(); //terminatore riga
             out.flush();
         } catch (IOException e) {
@@ -70,6 +74,15 @@ public class Client {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+
+    private String coloraMessaggio(String messaggio){
+        if(colore == "verde"){
+            return ANSI_VERDE + messaggio + ANSI_RESET;
+        } else{
+            return messaggio;
         }
     }
 }

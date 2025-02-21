@@ -22,7 +22,7 @@ public class Server {
         this.porta = porta;
         try {
             serverSocket = new ServerSocket(porta);
-            System.out.println("1) Server in ascolto sulla porta" + porta);
+            System.out.println("1) Server in ascolto sulla porta " + porta);
         } catch (IOException e) {
             System.err.println("Errore del server nella fase di binding");
             throw new RuntimeException(e);
@@ -35,6 +35,7 @@ public class Server {
             clientSocket = serverSocket.accept();
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+            //ottiene l'indirizzo ip del dispositivo al quale il socket è connesso
             System.out.println("2) Connessione con il client avvenuta e data socket creato: " + clientSocket.getInetAddress());
         } catch (IOException e) {
             System.err.println("Problemi di connessione con il client");
