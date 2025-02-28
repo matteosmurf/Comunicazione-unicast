@@ -55,8 +55,13 @@ public class Client {
         }
     }
 
-    public void scrivi(String messaggio) {
+    public void scrivi() {
         try {
+            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Inserisci un messaggio da inviare al server: ");
+            String messaggio = input.readLine();
+            
+
             String messaggioColorato = coloraMessaggio(messaggio);
             out.write(messaggioColorato);
             out.newLine(); //terminatore riga

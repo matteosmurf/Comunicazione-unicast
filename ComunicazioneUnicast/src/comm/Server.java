@@ -10,6 +10,9 @@ import java.net.Socket;
 
 public class Server {
 
+    private final String ANSI_RESET = "\u001B[0m";
+    private final String ANSI_VERDE = "\u001B[32m";
+
     private BufferedReader in;
     private BufferedWriter out;
 
@@ -55,12 +58,17 @@ public class Server {
 
     public void scrivi(String messaggio) {
         try {
-            out.write(messaggio);
+            String messaggioColorato = coloraMessaggio(messaggio);
+            out.write(messaggioColorato);
             out.newLine();
             out.flush();
         } catch (IOException e) {
             System.err.println("Errore durante la scrittura");
         }
+    }
+
+    private String coloraMessaggio(String messaggio){
+            return ANSI_VERDE + messaggio + ANSI_RESET;
     }
 
     public void chiudi(){
